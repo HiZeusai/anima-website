@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anima - Music Healing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #f0f0f0;
+            position: relative;
+        }
+
+        /* Stars background effect */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #cccccc;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Main content area */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Page content */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero section styles */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 100;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+            background: linear-gradient(45deg, #ffffff, #cccccc, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2)); }
+            to { filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.4)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, #cccccc, #888888);
+            color: #ffffff;
+        }
+
+        /* Content page styles */
+        .content-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .content-page h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .content-page h2 {
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin: 30px 0 15px;
+            font-weight: 400;
+        }
+
+        .content-page p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #cccccc;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .contact-info a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+
+            .container {
+                padding: 80px 15px 30px;
+            }
+
+            .content-page {
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: 2px;
+            }
+
+            .content-page h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Floating music notes animation */
+        .floating-notes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Subtle breathing animation for a calming effect */
+        .breathing-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: breathe 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars background -->
+    <div class="stars"></div>
+    
+    <!-- Breathing glow effect -->
+    <div class="breathing-glow"></div>
+    
+    <!-- Floating music notes -->
+    <div class="floating-notes"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">Anima</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#terms">Terms of Use</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- Home page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Anima</h1>
+                <p>Music Healing, Mind Peaceful</p>
+                <a href="#contact" class="cta-button">Begin Experience</a>
+            </div>
+        </div>
+
+        <!-- Privacy Policy page -->
+        <div id="privacy" class="page">
+            <div class="content-page">
+                <h1>Privacy Policy</h1>
+                
+                <h2>1. Information Collection</h2>
+                <p>Anima is committed to protecting your privacy. We only collect information necessary to provide you with a better music healing experience.</p>
+                
+                <h2>2. Personal Information Usage</h2>
+                <p>The personal information we collect will only be used for:</p>
+                <p>• Providing personalized music healing content<br>
+                • Improving app functionality and user experience<br>
+                • Sending important service notifications</p>
+                
+                <h2>3. Information Security</h2>
+                <p>We employ industry-standard security measures to protect your personal information from unauthorized access, use, or disclosure.</p>
+                
+                <h2>4. Third-Party Services</h2>
+                <p>We may use third-party analytics services to improve our application. These service providers are bound by strict data protection agreements.</p>
+                
+                <h2>5. Your Rights</h2>
+                <p>You have the right to access, correct, or delete your personal information. If you have any questions, please contact our support team.</p>
+                
+                <h2>6. Policy Updates</h2>
+                <p>We may update this privacy policy from time to time. Significant changes will be communicated through in-app notifications or email.</p>
+                
+                <p style="margin-top: 40px; font-size: 0.9rem; color: #888;">Last updated: October 2025</p>
+            </div>
+        </div>
+
+        <!-- Terms of Use page -->
+        <div id="terms" class="page">
+            <div class="content-page">
+                <h1>Terms of Use</h1>
+                
+                <h2>1. Service Description</h2>
+                <p>Anima is a mobile application focused on music healing, designed to help users relax and relieve stress through carefully curated musical content.</p>
+                
+                <h2>2. License to Use</h2>
+                <p>We grant you a limited, non-exclusive, non-transferable license to use the Anima application for personal, non-commercial use only.</p>
+                
+                <h2>3. User Responsibilities</h2>
+                <p>When using our service, you agree to:</p>
+                <p>• Comply with all applicable laws and regulations<br>
+                • Not engage in any activities that may harm the service<br>
+                • Keep your account information secure</p>
+                
+                <h2>4. Intellectual Property</h2>
+                <p>All content in the application, including music, text, images, and software, is protected by intellectual property laws. Unauthorized copying or distribution is prohibited.</p>
+                
+                <h2>5. Disclaimer</h2>
+                <p>Anima is for relaxation and entertainment purposes only. Our service cannot replace professional medical advice or treatment. If you have health concerns, please consult a professional doctor.</p>
+                
+                <h2>6. Service Changes</h2>
+                <p>We reserve the right to modify or terminate the service at any time. Significant changes will be communicated to users in advance.</p>
+                
+                <h2>7. Contact Information</h2>
+                <p>If you have any questions about these terms, please contact us at support@anima.fan.</p>
+                
+                <p style="margin-top: 40px; font-size: 0.9rem; color: #888;">Last updated: October 2025</p>
+            </div>
+        </div>
+
+        <!-- Contact Us page -->
+        <div id="contact" class="page">
+            <div class="content-page">
+                <h1>Contact Us</h1>
+                
+                <div class="contact-info">
+                    <h3>Support Email</h3>
+                    <a href="mailto:support@anima.fan">support@anima.fan</a>
+                </div>
+                
+                <h2>Our Mission</h2>
+                <p>Anima is dedicated to bringing inner peace and tranquility to every user. Through carefully selected musical content, we hope to help you find moments of serenity in your busy life.</p>
+                
+                <h2>Reasons to Contact Us</h2>
+                <p>You can contact us for the following reasons:</p>
+                <p>• Technical support and bug reports<br>
+                • Account-related issues<br>
+                • Feature suggestions and feedback<br>
+                • Business partnership inquiries<br>
+                • Privacy and security concerns</p>
+                
+                <h2>Response Time</h2>
+                <p>We typically respond to emails within 1-2 business days. For urgent matters, we prioritize handling them promptly.</p>
+                
+                <h2>Feedback</h2>
+                <p>Your feedback is very important to us. Whether it's feature suggestions, experience improvements, or content recommendations, we welcome your valuable input.</p>
+                
+                <div class="contact-info" style="margin-top: 40px;">
+                    <h3>Let Music Heal Your Soul</h3>
+                    <p style="color: #ffffff; font-style: italic;">Thank you for choosing Anima. May music bring peace to your heart.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page switching functionality with URL routing
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            setTimeout(() => {
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                } else {
+                    // Fallback to home if page not found
+                    document.getElementById('home').classList.add('active');
+                }
+            }, 200);
+        }
+
+        // Handle URL hash changes
+        function handleRouting() {
+            const hash = window.location.hash.slice(1); // Remove the # symbol
+            const validPages = ['home', 'privacy', 'terms', 'contact'];
+            
+            if (hash && validPages.includes(hash)) {
+                showPage(hash);
+            } else {
+                // Default to home page
+                showPage('home');
+                // Update URL to show home hash
+                window.history.replaceState(null, null, '#home');
+            }
+        }
+
+        // Create stars background
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating music notes
+        function createFloatingNotes() {
+            const notesContainer = document.querySelector('.floating-notes');
+            const notes = ['♪', '♫', '♬', '♩', '♭', '♯'];
+            
+            setInterval(() => {
+                const note = document.createElement('div');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                notesContainer.appendChild(note);
+                
+                // Remove notes after animation completes
+                setTimeout(() => {
+                    if (note.parentNode) {
+                        note.parentNode.removeChild(note);
+                    }
+                }, 13000);
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createFloatingNotes();
+            
+            // Handle initial page load routing
+            handleRouting();
+        });
+
+        // Listen for hash changes (browser back/forward buttons)
+        window.addEventListener('hashchange', handleRouting);
+
+        // Smooth scrolling is not needed since we're using hash routing for navigation
+        // The hash changes will be handled by our routing system
+    </script>
+</body>
+</html>
