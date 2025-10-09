@@ -373,8 +373,8 @@
             <a href="#home" class="logo">Anima</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#terms">Terms of Use</a></li>
+                <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
         </div>
@@ -391,68 +391,6 @@
             </div>
         </div>
 
-        <!-- Privacy Policy page -->
-        <div id="privacy" class="page">
-            <div class="content-page">
-                <h1>Privacy Policy</h1>
-                
-                <h2>1. Information Collection</h2>
-                <p>Anima is committed to protecting your privacy. We only collect information necessary to provide you with a better music healing experience.</p>
-                
-                <h2>2. Personal Information Usage</h2>
-                <p>The personal information we collect will only be used for:</p>
-                <p>• Providing personalized music healing content<br>
-                • Improving app functionality and user experience<br>
-                • Sending important service notifications</p>
-                
-                <h2>3. Information Security</h2>
-                <p>We employ industry-standard security measures to protect your personal information from unauthorized access, use, or disclosure.</p>
-                
-                <h2>4. Third-Party Services</h2>
-                <p>We may use third-party analytics services to improve our application. These service providers are bound by strict data protection agreements.</p>
-                
-                <h2>5. Your Rights</h2>
-                <p>You have the right to access, correct, or delete your personal information. If you have any questions, please contact our support team.</p>
-                
-                <h2>6. Policy Updates</h2>
-                <p>We may update this privacy policy from time to time. Significant changes will be communicated through in-app notifications or email.</p>
-                
-                <p style="margin-top: 40px; font-size: 0.9rem; color: #888;">Last updated: October 2025</p>
-            </div>
-        </div>
-
-        <!-- Terms of Use page -->
-        <div id="terms" class="page">
-            <div class="content-page">
-                <h1>Terms of Use</h1>
-                
-                <h2>1. Service Description</h2>
-                <p>Anima is a mobile application focused on music healing, designed to help users relax and relieve stress through carefully curated musical content.</p>
-                
-                <h2>2. License to Use</h2>
-                <p>We grant you a limited, non-exclusive, non-transferable license to use the Anima application for personal, non-commercial use only.</p>
-                
-                <h2>3. User Responsibilities</h2>
-                <p>When using our service, you agree to:</p>
-                <p>• Comply with all applicable laws and regulations<br>
-                • Not engage in any activities that may harm the service<br>
-                • Keep your account information secure</p>
-                
-                <h2>4. Intellectual Property</h2>
-                <p>All content in the application, including music, text, images, and software, is protected by intellectual property laws. Unauthorized copying or distribution is prohibited.</p>
-                
-                <h2>5. Disclaimer</h2>
-                <p>Anima is for relaxation and entertainment purposes only. Our service cannot replace professional medical advice or treatment. If you have health concerns, please consult a professional doctor.</p>
-                
-                <h2>6. Service Changes</h2>
-                <p>We reserve the right to modify or terminate the service at any time. Significant changes will be communicated to users in advance.</p>
-                
-                <h2>7. Contact Information</h2>
-                <p>If you have any questions about these terms, please contact us at support@anima.fan.</p>
-                
-                <p style="margin-top: 40px; font-size: 0.9rem; color: #888;">Last updated: October 2025</p>
-            </div>
-        </div>
 
         <!-- Contact Us page -->
         <div id="contact" class="page">
@@ -513,7 +451,7 @@
         // Handle URL hash changes
         function handleRouting() {
             const hash = window.location.hash.slice(1); // Remove the # symbol
-            const validPages = ['home', 'privacy', 'terms', 'contact'];
+            const validPages = ['home', 'contact'];
             
             if (hash && validPages.includes(hash)) {
                 showPage(hash);
