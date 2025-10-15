@@ -18,6 +18,8 @@
             overflow-x: hidden;
             color: #f0f0f0;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Stars background effect */
@@ -115,6 +117,13 @@
             left: 0;
         }
 
+        /* Main wrapper for flexbox layout */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         /* Main content area */
         .container {
             max-width: 1200px;
@@ -122,6 +131,7 @@
             padding: 100px 20px 50px;
             position: relative;
             z-index: 100;
+            flex: 1;
         }
 
         /* Page content */
@@ -142,6 +152,10 @@
         .hero {
             text-align: center;
             padding: 80px 0;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero h1 {
@@ -355,6 +369,31 @@
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
         }
+
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 100;
+        }
+
+        .footer p {
+            color: #888888;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer p:hover {
+            color: #cccccc;
+        }
     </style>
 </head>
 <body>
@@ -367,21 +406,23 @@
     <!-- Floating music notes -->
     <div class="floating-notes"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#home" class="logo">Anima</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Main wrapper for flexbox layout -->
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <a href="#home" class="logo">Anima</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- Main content -->
-    <div class="container">
+        <!-- Main content -->
+        <div class="container">
         <!-- Home page -->
         <div id="home" class="page active">
             <div class="hero">
@@ -487,6 +528,12 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Anima SoundScape Lab</p>
+    </footer>
 
     <script>
         // Page switching functionality with URL routing
