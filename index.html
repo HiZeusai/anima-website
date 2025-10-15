@@ -373,7 +373,7 @@
             <a href="#home" class="logo">Anima</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
                 <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
@@ -425,6 +425,67 @@
                 </div>
             </div>
         </div>
+
+        <!-- Privacy Policy page -->
+        <div id="privacy" class="page">
+            <div class="content-page">
+                <h1>Anima Privacy Policy</h1>
+                <p style="text-align: center; color: #aaa; margin-bottom: 40px;"><em>Last Updated: October 1, 2025</em></p>
+                
+                <p>This Privacy Policy explains how Anima, the developer and operator of Anima ("we," "our," or "us"), collects, uses, and discloses information about you ("you" or "User") when you use our Anima mobile application (the "App"). By using our App, you consent to the collection, use, and disclosure of your information as described in this Privacy Policy.</p>
+                
+                <h2>1. Information Collection</h2>
+                <p><strong>Personal Information:</strong> When you register for an account or use our App, we may collect personal information, including but not limited to your name, email address, and other relevant details.</p>
+                <p><strong>Usage Data:</strong> We automatically collect data related to your use of the App, including your device's IP address, device type, operating system, and information related to your use of our App.</p>
+                <p><strong>Cookies:</strong> Our App may use cookies to identify you and store certain user preferences.</p>
+                
+                <h2>2. Use of Information</h2>
+                <p><strong>Providing and Improving Services:</strong> We use your information to provide you with App services, respond to your inquiries, and improve App functionality.</p>
+                <p><strong>Marketing and Promotions:</strong> With your consent, we may use your information to send you promotional information and offers. You can opt out at any time.</p>
+                <p><strong>Analytical Purposes:</strong> We use data to understand how users interact with our apps and to improve them based on these insights.</p>
+                
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell your personal information. However, we may share your information with trusted third parties in the following circumstances:</p>
+                <p>• When we believe the law requires it<br>
+                • With third-party service providers who assist with our business operations<br>
+                • If our company is involved in a merger, acquisition, or any form of asset sale</p>
+                
+                <h2>4. Data Security</h2>
+                <p>We prioritize protecting your personal information and implement various security measures to prevent unauthorized access, alteration, or disclosure. However, no method is 100% secure, and we cannot guarantee its absolute security.</p>
+                
+                <h2>5. Digital Advertising and Privacy Framework</h2>
+                <p>We adhere to the following digital advertising and privacy frameworks:</p>
+                <p><strong>Apple App Tracking Transparency (ATT):</strong> We will ask for your permission before tracking your activity across other companies' apps and websites for advertising purposes. You can choose to allow or deny such tracking.</p>
+                <p><strong>Meta Aggregated Event Measurement (AEM):</strong> Using Meta's AEM framework allows us to measure and optimize the performance of ad campaigns on the Meta platform in a manner that respects your privacy choices and ensures the anonymity of the data.</p>
+                <p><strong>SKAdNetwork (SKAN):</strong> We use SKAN to measure the conversion rate of ad campaigns while protecting user privacy, providing aggregated and anonymized data to improve ad effectiveness without linking the data to your identity.</p>
+                
+                <h2>6. Children's Privacy</h2>
+                <p>Our apps are not intended for users under the age of 13. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected such information, please contact us and we will promptly delete it.</p>
+                
+                <h2>7. Third-Party Links</h2>
+                <p>Our apps may contain links to third-party websites. We are not responsible for the privacy practices of these external websites.</p>
+                
+                <h2>8. Consent to Share Consumption Information with Apple</h2>
+                <p>To facilitate certain features of our apps, including ensuring a smooth transaction process for in-app purchases, we may share consumption information with Apple. This includes information provided via the "Send Purchase Information API" outlined in the Apple App Store Server API documentation.</p>
+                <p>By using our apps and making in-app purchases, you consent to us sharing relevant purchase information with Apple. This data sharing is necessary to support in-app purchases and other related processes. Information shared with Apple is used only for these purposes and not for marketing or analytics.</p>
+                
+                <h2>9. GDPR and CCPA Compliance</h2>
+                <p>Our apps are committed to complying with the EU's General Data Protection Regulation (GDPR) and California's California Consumer Privacy Act (CCPA), reflecting our commitment to protecting the privacy and data of all users. Here's how we ensure compliance:</p>
+                <p><strong>GDPR:</strong> If you are an EU resident, you have the right to access, correct, transfer, or delete your personal information that we have collected. Additionally, you have the right to restrict or object to our processing of your data. To exercise any of these rights, please contact us directly.</p>
+                <p><strong>CCPA:</strong> If you are a California resident, you have the right to request access to the personal information we have collected about you, request deletion of any personal information we have collected about you (subject to certain exceptions), and opt-out of the sale of your personal information. Please contact us to exercise these rights.</p>
+                <p>We take steps to identify and apply relevant privacy laws to your data processing activities and to ensure that your rights are respected and enforceable.</p>
+                
+                <h2>10. Privacy Policy Changes</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+                
+                <h2>11. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                <div class="contact-info">
+                    <h3>Support Email</h3>
+                    <a href="mailto:support@anima.fan">support@anima.fan</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -451,7 +512,7 @@
         // Handle URL hash changes
         function handleRouting() {
             const hash = window.location.hash.slice(1); // Remove the # symbol
-            const validPages = ['home', 'contact'];
+            const validPages = ['home', 'privacy', 'contact'];
             
             if (hash && validPages.includes(hash)) {
                 showPage(hash);
